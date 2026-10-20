@@ -12,6 +12,7 @@ pub mod file_reader {
     };
 
     use crate::{
+        creation,
         file_parsin::{CreatedByArgs, FileCreated},
         golang::FinalProjectBase,
         opener::truth_base,
@@ -35,6 +36,8 @@ pub mod file_reader {
 
         if project_custom.contains(&truth_base("true").to_string()) {
             let project_name = data["NameProject"].as_str().unwrap();
+
+            creation::create(String::from("Rust Picked")).unwrap();
 
             Command::new(format!("{}{}", "cargo new", project_name.to_lowercase()))
                 .spawn()
@@ -67,6 +70,7 @@ pub mod file_reader {
         if project == "GoLang" {
             let mut file_go = FileCreated { file: "main.go" };
             File::create(file_go.check().file)?;
+            creation::create(String::from("GoLang Picked")).unwrap();
 
             let project_name = data["NameProject"].as_str().unwrap();
 
@@ -85,6 +89,7 @@ pub mod file_reader {
         if project == "RustProject" {
             let project_name = data["NameProject"].as_str().unwrap();
 
+            creation::create(String::from("Rust Picked")).unwrap();
             Command::new(format!("{}{}", "cargo new", project_name.to_lowercase()))
                 .spawn()
                 .expect("No File or Go Project Created");
@@ -112,6 +117,7 @@ pub mod file_reader {
         if project_read_json == "true" {
             let project_name = data["NameProject"].as_str().unwrap();
 
+            creation::create(String::from("Rust Picked")).unwrap();
             Command::new(format!("{}{}", "cargo new", project_name.to_lowercase()))
                 .spawn()
                 .expect("No File or Go Project Created");
@@ -129,6 +135,8 @@ pub mod file_reader {
 
                 let project_name = data["NameProject"].as_str().unwrap();
 
+                creation::create(String::from("GoLang Picked")).unwrap();
+
                 let project_info: FinalProjectBase<String> = FinalProjectBase {
                     name: project_name.to_string(),
                 };
@@ -142,6 +150,8 @@ pub mod file_reader {
             } else {
                 if read_json_parser == "Cargo" || read_json_parser == "rust" {
                     let project_name = data["NameProject"].as_str().unwrap();
+
+                    creation::create(String::from("Rust Picked")).unwrap();
 
                     let project_info: FinalProjectBase<String> = FinalProjectBase {
                         name: project_name.to_string(),
